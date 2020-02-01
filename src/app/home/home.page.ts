@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
   orders: any;
   productItem: any;
   orderProduct: any;
+  leave: any;
 
   constructor(private firebase: FirebaseService) { }
 
