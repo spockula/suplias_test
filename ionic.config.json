@@ -1,0 +1,7 @@
+{
+  "name": "suplias",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
