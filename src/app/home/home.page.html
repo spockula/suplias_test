@@ -1,0 +1,176 @@
+<ion-header color="primary">
+
+</ion-header>
+
+<ion-content class="obinna" color="primary">
+  <div style = "padding-left:25px; padding-top: 40px; display:block;">
+    <h2 ion-text><b>Good morning,</b></h2>
+    <h2 ion-text>{{buyer?.name}} ({{storeType?.name}})</h2>
+    </div>
+  
+    <ion-item color="primary">
+    <ion-searchbar value="What are you looking for today?" style="width: 80%; padding-left: 6px;"></ion-searchbar>
+    <ion-icon class="cart" name="appstore" style="padding-left: 30px;"></ion-icon> <ion-badge color="danger" style="padding-left: 2px;">2</ion-badge>
+  </ion-item>
+  
+  <ion-card style="background-color: azure; margin-left:20px; margin-right:20px;">
+    <ion-item style="padding-top: 10px; padding-bottom:30px;">
+    <ion-card-title>
+      <h1 style="padding-left: 50px;">Billing Info</h1>
+    </ion-card-title>
+    </ion-item>
+    <ion-card-content>
+  <ion-item class="item-profile">
+    <div class="item-avatar">
+      <img src="../assets/images/profile.png">
+    </div>
+  </ion-item>
+  
+  <ion-text >
+    <b><h1 style="padding-left: 50px;">PERSON</h1> </b>
+  </ion-text>
+    <ion-text style="display: block; padding-left:50px;">
+      <h1>{{buyer?.person}}</h1></ion-text>
+    <ion-text style="display: block; padding-left:50px;">
+      <h1>{{buyer?.phone}}</h1>
+    </ion-text>
+  
+  <ion-text >
+    <b><h1 style="padding-left: 50px;">STORE</h1></b>
+  </ion-text>
+  <h2 style="padding-left: 50px;">{{buyer?.name}} (Kiosk)</h2>
+
+  <ion-text>
+    <b><h1 style="padding-left: 50px;">BILLING ADDRESS</h1></b>
+    <br>
+    <h3 style="padding-left: 50px;"> {{buyer?.address}} - <b>{{buyer?.location.name}}, {{buyer?.location.state}}</b></h3>
+  </ion-text>
+    </ion-card-content>
+  
+  </ion-card>
+
+  <ion-card style="background-color: azure; margin-left:20px; margin-right:20px;">
+    <ion-item style="padding-top: 10px;">
+      <ion-card-title>
+        <h1 style="padding-left: 50px;">Buyer Orders</h1>
+      </ion-card-title>
+      </ion-item>
+      <ion-card-content>
+        <ion-segment [(ngModel)]="leave" style="padding-left: 50px;">
+          <ion-segment-button value="orders">
+            <ion-text>Orders <ion-badge color="danger" style="padding-left: 6px;">2</ion-badge>
+            </ion-text>
+            </ion-segment-button>
+          <ion-segment-button value="weekly">
+            <ion-text>Weekly Orders <ion-badge color="danger"> 4</ion-badge></ion-text>
+          </ion-segment-button>
+          <ion-segment-button value="cart">
+            <ion-text>In-cart</ion-text>
+          </ion-segment-button>
+        </ion-segment>
+    
+        <div [ngSwitch]="leave">
+          <ion-list *ngSwitchCase="'orders'">
+            <ion-item>
+            <ion-button start color="light" style="padding-left: 50px;"> 
+              <b><h1>Filter</h1></b>
+            </ion-button><ion-searchbar value="Search Orders" style="width: 50%; padding-left:20px;"></ion-searchbar>
+          </ion-item >
+
+          <div  *ngFor="let order of orders"> 
+          <ion-item>
+            <ion-label class="trial"> {{order?.tag}} </ion-label>
+          </ion-item>
+
+          <ion-item style="padding-left: 30px;">
+            <ion-label> <h1> <b> Order #{{order?.ref}} </b> </h1> </ion-label>
+            <ion-label>  ‎<h1> <b> ‎₦{{order?.amount}}</b>‎ </h1> </ion-label>
+          </ion-item>
+        </div>
+            
+          </ion-list>
+           
+
+<ion-list *ngSwitchCase="'weekly'">
+<ion-card>
+<ion-item *ngFor= "let balances of orderProduct">
+  <ion-col>
+  <ion-row>
+    <ion-col size="1">
+      <img src="./assets/images/3563071689.jpg">
+    </ion-col>
+    <ion-item style="padding-left: 160px;">
+      <ion-col> <h1> {{balances?.product.name}} </h1></ion-col>
+      <ion-col style="padding-left: 50px;">  ‎<h1> <b> ‎₦ {{ balances?.product.price }} </b>‎ </h1> </ion-col>
+    </ion-item>
+  </ion-row>
+
+</ion-col>
+</ion-item>
+</ion-card>
+</ion-list>
+
+<ion-list *ngSwitchCase="'orders'">
+<ion-card>
+<ion-item *ngFor="let holiday of holiday">
+<ion-col>
+  None
+</ion-col>
+</ion-item>
+</ion-card>
+</ion-list>
+</div>
+    
+    
+      </ion-card-content >
+
+  </ion-card>
+  <ion-card style="background-color: azure; margin-left:20px; margin-right:20px;">
+    <ion-card-header>
+      <ion-item style="padding-left: 50px;">
+        <h1> <b> Order #FC09910 </b> </h1>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item style="padding-bottom: 10px;">
+        <ion-label text-wrap> <b><h1 style="padding-left: 50px;">DATE </h1> </b> </ion-label>
+        <ion-label text-wrap> <b><h1 style="padding-left: 50px;">STATUS </h1> </b> </ion-label> 
+      </ion-item>
+      <ion-item>
+        <ion-col style="padding-left: 50px;" >Aug 3, 2019</ion-col>
+        <ion-col style="padding-left: 50px; color:green;">Completed</ion-col>
+      </ion-item>
+
+      <ion-item>
+        <ion-label> <b> <h1 style="padding-left: 50px;" color="grey"> DISTRIBUTOR</h1> </b> </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-col style="padding-left: 50px;"> Suplias </ion-col>
+      </ion-item>
+
+      <ion-grid style="padding-left: 50px;" *ngFor="let product of productItem">
+        <ion-row>
+          <ion-col size="1">
+            <img src="./assets/images/3563071689.jpg">
+          </ion-col>
+          <ion-item style="padding-left: 160px;">
+            <ion-col> <h1> {{product?.name}} </h1></ion-col>
+            <ion-col style="padding-left: 50px;">  ‎<h1> <b> ‎₦ {{product?.price}} </b>‎ </h1> </ion-col>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+      <ion-item style="padding-left: 50px;">
+        <ion-label> <h1> <b> Total </b> </h1> </ion-label>
+        <ion-label> <h1> <b>
+          ‎₦11350
+        </b> </h1> </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+<ion-router-outlet main></ion-router-outlet>
+
+
+
+
+</ion-content>
